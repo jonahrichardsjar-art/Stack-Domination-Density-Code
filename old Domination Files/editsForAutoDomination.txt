@@ -1,0 +1,15 @@
+starting_matrix = build_starting_matrix(m)
+    path_matrix = make_path_matrix(n)
+    result = KroneckerProduct(starting_matrix, path_matrix)
+    perm = perm_matrix(swapArray(m, n))
+    final = np.dot(np.dot(perm, result), np.transpose(perm)).astype(int)
+    if answer:
+        final = manual_cycle(final, m, n).astype(int)
+    
+    dominatingSet = recurvHunter(final, m, weights, verbose=True)
+    print("Dominating Set:", dominatingSet)
+    stream = open("m7Results.txt", "w")
+    stream.write(f"m = {m}, n = {n}, k = {weights}")
+    stream.write(f"Dominating Set: {dominatingSet")
+    stream.close()
+    print("--------------------------------------------------------------------------------------------------")
